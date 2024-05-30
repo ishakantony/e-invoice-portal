@@ -15,19 +15,23 @@ import {
 } from '@/components/ui/table'
 import { invoices } from '@/data/invoices'
 import { useConfirm } from '@/hooks/use-confirm'
+import { useSendEmail } from '@/hooks/use-send-email'
 import { toast } from 'sonner'
 
 export default function InvoicesPage() {
+  const sendEmailMutation = useSendEmail()
   const [ConfirmDialog, confirm] = useConfirm(
     'You will receive an email',
     "This invoice will be sent to your email. If you couldn't find it in your inbox, please do check the same folder."
   )
 
-  const handleEmailMe = async () => {
+  const isPending = sendEmailMutation.isPending
+
+  const handleEmailMe = async (id: string) => {
     const ok = await confirm()
 
     if (ok) {
-      toast.success('Email sent!')
+      sendEmailMutation.mutate(id)
     }
   }
 
@@ -88,7 +92,10 @@ export default function InvoicesPage() {
                           </DialogContent>
                         </Dialog>
                         <Button
-                          onClick={handleEmailMe}
+                          disabled={isPending}
+                          onClick={() => {
+                            handleEmailMe(invoice.id)
+                          }}
                           size="sm"
                           variant="outline"
                         >
