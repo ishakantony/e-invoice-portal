@@ -1,6 +1,4 @@
 import { Card, CardHeader, CardContent } from '@/components/ui/card'
-import { Skeleton } from '@/components/ui/skeleton'
-import { Loader2 } from 'lucide-react'
 
 export default function Dashboard() {
   return (
