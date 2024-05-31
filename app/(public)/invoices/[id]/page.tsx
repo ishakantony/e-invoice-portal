@@ -1,9 +1,10 @@
 'use client'
 
 import { TaxInvoice } from '@/components/tax-invoice'
+// import { TaxInvoice } from '@/components/email/tax-invoice'
 import { Card } from '@/components/ui/card'
 import { invoices } from '@/data/invoices'
-import { useParams, useRouter } from 'next/navigation'
+import { useParams } from 'next/navigation'
 
 export default function InvoicePage() {
   const params = useParams<{ id: string }>()
@@ -15,7 +16,7 @@ export default function InvoicePage() {
   }
 
   return (
-    <div className="max-w-screen-2xl flex justify-center items-center min-h-screen">
+    <div className="max-w-screen-2xl flex justify-center items-center min-h-screen mx-auto">
       <Card className="border-none drop-shadow-sm min-w-[700px] p-6">
         <TaxInvoice invoice={invoice} />
       </Card>

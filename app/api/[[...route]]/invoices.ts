@@ -4,8 +4,7 @@ import { zValidator } from '@hono/zod-validator'
 import { z } from 'zod'
 import { Resend } from 'resend'
 import { invoices } from '@/data/invoices'
-import { TaxInvoice } from '@/components/tax-invoice'
-import { TaxInvoiceEmail } from '@/components/tax-invoice-email'
+import { TaxInvoice } from '@/components/email/tax-invoice'
 
 const app = new Hono().post(
   '/:id/send-email',
@@ -41,12 +40,15 @@ const app = new Hono().post(
       return c.json({ error: 'Missing email address' }, 400)
     }
 
+    const baseUrl = process.env.VERCEL_URL
+      ? `https://${process.env.VERCEL_URL}`
+      : ''
+
     const { data, error } = await resend.emails.send({
       from: 'DO NOT REPLY <noreply@ishakantony.dev>',
       to: email,
       subject: `e-Invoice [${invoice.invoiceNumber}]`,
-      react: TaxInvoiceEmail({ invoice }),
-      // text: 'Test email 1234',
+      react: TaxInvoice({ invoice }),
     })
 
     if (error) {
