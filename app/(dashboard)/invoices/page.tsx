@@ -38,7 +38,7 @@ export default function InvoicesPage() {
   return (
     <>
       <ConfirmDialog />
-      <div className="max-w-screen-2xl mx-auto w-full pb-10 -mt-24">
+      <div className="max-w-screen-2xl mx-auto flex items-center justify-center min-h-full">
         <Card className="border-none drop-shadow-sm">
           <CardHeader>
             <h1 className="text-4xl font-extrabold tracking-tight">Invoices</h1>

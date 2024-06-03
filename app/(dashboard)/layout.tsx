@@ -1,4 +1,4 @@
-import { Header } from '@/components/header'
+import { Aside } from '@/components/aside'
 
 type Props = {
   children: React.ReactNode
@@ -6,10 +6,10 @@ type Props = {
 
 const DashboardLayout = ({ children }: Props) => {
   return (
-    <>
-      <Header />
-      <main className="px-3 lg:px-14">{children}</main>
-    </>
+    <div className="flex">
+      <Aside />
+      <main className="w-full">{children}</main>
+    </div>
   )
 }
 

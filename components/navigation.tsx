@@ -62,7 +62,7 @@ export const Navigation = () => {
   }
 
   return (
-    <nav className="hidden lg:flex items-center gap-x-2 overflow-x-auto">
+    <nav className="hidden mt-10 lg:flex flex-col items-center gap-y-2 overflow-y-auto w-full">
       {routes.map((route) => (
         <NavButton
           key={route.href}
