@@ -16,6 +16,7 @@ import {
 import { invoices } from '@/data/invoices'
 import { useConfirm } from '@/hooks/use-confirm'
 import { useSendEmail } from '@/hooks/use-send-email'
+import Link from 'next/link'
 import { toast } from 'sonner'
 
 export default function InvoicesPage() {
@@ -38,8 +39,8 @@ export default function InvoicesPage() {
   return (
     <>
       <ConfirmDialog />
-      <div className="max-w-screen-2xl mx-auto flex items-center justify-center min-h-full">
-        <Card className="border-none drop-shadow-sm">
+      <div className="max-w-screen-2xl mx-auto flex justify-center min-h-full">
+        <Card className="border-none drop-shadow-sm w-full">
           <CardHeader>
             <h1 className="text-4xl font-extrabold tracking-tight">Invoices</h1>
           </CardHeader>
@@ -49,7 +50,7 @@ export default function InvoicesPage() {
                 <TableRow>
                   <TableHead className="w-[150px]">Invoice #</TableHead>
                   <TableHead>Buyer</TableHead>
-                  <TableHead>Result</TableHead>
+                  <TableHead className="w-[150px]">Result</TableHead>
                   <TableHead className="text-right">Amount</TableHead>
                   <TableHead className="w-[200px] text-center">
                     Action
@@ -83,14 +84,9 @@ export default function InvoicesPage() {
                     </TableCell>
                     <TableCell>
                       <div className="flex gap-2 justify-center">
-                        <Dialog>
-                          <DialogTrigger asChild>
-                            <Button size="sm">View</Button>
-                          </DialogTrigger>
-                          <DialogContent className="min-w-[700px] pt-8">
-                            <TaxInvoice invoice={invoice} />
-                          </DialogContent>
-                        </Dialog>
+                        <Link href={`/invoices/${invoice.invoiceNumber}`}>
+                          <Button size="sm">View</Button>
+                        </Link>
                         <Button
                           disabled={isPending}
                           onClick={() => {
