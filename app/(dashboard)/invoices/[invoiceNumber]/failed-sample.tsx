@@ -4,7 +4,16 @@ import { Card, CardContent, CardHeader } from '@/components/ui/card'
 import Image from 'next/image'
 import { Badge } from '@/components/ui/badge'
 import { CodeHighlight } from '@/components/code-highlight'
-import { Dialog, DialogTrigger, DialogContent } from '@/components/ui/dialog'
+import {
+  Dialog,
+  DialogTrigger,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogDescription,
+  DialogFooter,
+  DialogClose,
+} from '@/components/ui/dialog'
 import { Button } from '@/components/ui/button'
 import { Invoice } from '@/data/invoices'
 import { Input } from '@/components/ui/input'
@@ -177,24 +186,42 @@ xmlns="urn:oasis:names:specification:ubl:schema:xsd:Invoice-2">
                     <Button className="w-full">Fix</Button>
                   </DialogTrigger>
                   <DialogContent className="pt-8">
-                    <div className="grid w-full max-w-sm items-center gap-1.5">
-                      <Label htmlFor="oldNric">Old NRIC</Label>
-                      <Input
-                        type="text"
-                        id="oldNric"
-                        placeholder="Old NRIC"
-                        value="990909-99-1234"
-                      />
+                    <DialogHeader>
+                      <DialogTitle>
+                        IRBM-ERR-002: NRIC validation failed
+                      </DialogTitle>
+                      <DialogDescription>
+                        You need to provide a new NRIC to fix this issue. You
+                        can make a call to the buyer so they can provide the
+                        correct NRIC.
+                      </DialogDescription>
+                    </DialogHeader>
+                    <div className="grid grid-cols-2 gap-4">
+                      <div>
+                        <Label htmlFor="oldNric">Invalid NRIC</Label>
+                        <Input
+                          type="text"
+                          id="oldNric"
+                          placeholder="Old NRIC"
+                          value="990909-99-1234"
+                          disabled
+                        />
+                      </div>
+                      <div>
+                        <Label htmlFor="newNric">New NRIC</Label>
+                        <Input
+                          type="text"
+                          id="newNric"
+                          placeholder="NRIC"
+                          autoFocus
+                        />
+                      </div>
                     </div>
-                    <div className="grid w-full max-w-sm items-center gap-1.5">
-                      <Label htmlFor="newNric">New NRIC</Label>
-                      <Input
-                        type="text"
-                        id="newNric"
-                        placeholder="NRIC"
-                        autoFocus
-                      />
-                    </div>
+                    <DialogFooter>
+                      <DialogClose asChild>
+                        <Button className="w-full">Update</Button>
+                      </DialogClose>
+                    </DialogFooter>
                   </DialogContent>
                 </Dialog>
               </CardContent>
