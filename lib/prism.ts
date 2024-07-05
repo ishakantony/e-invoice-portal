@@ -2,7 +2,7 @@
 import 'prismjs'
 import 'prismjs/components/prism-json'
 import 'prismjs/components/prism-xml-doc'
-import 'prismjs/themes/prism.css' // Import the Prism CSS theme you want to use
+import './prism-vsc-dark-plus.css' // Import the Prism CSS theme you want to use
 
 const highlightCode = (code: string, language: 'json' | 'xml'): string => {
   const Prism = require('prismjs')

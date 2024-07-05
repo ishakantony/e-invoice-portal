@@ -16,7 +16,7 @@ type Props = {
 
 export const TaxInvoice = ({ invoice }: Props) => {
   const baseUrl: string = process.env.NEXT_PUBLIC_APP_URL!
-  const invoicePublicUrl: string = `${baseUrl}/invoices/${invoice.id}`
+  const invoicePublicUrl: string = `${baseUrl}/public/invoices/${invoice.id}`
 
   return (
     <div>
