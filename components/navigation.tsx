@@ -17,6 +17,10 @@ const routes = [
     href: '/invoices',
     label: 'Invoices',
   },
+  {
+    href: '/qr-generator',
+    label: 'QR Generator',
+  },
 ]
 
 export const Navigation = () => {
